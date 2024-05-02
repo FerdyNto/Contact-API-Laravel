@@ -14,6 +14,12 @@ class User extends Model
     public $timestamps = true;
     public $incrementing = true;
 
+    protected $fillable = [
+        'username',
+        'password',
+        'name'
+    ];
+
     // membuat relasi user dengan contact
     // 1 user memiliki N contact
     public function contacts(): HasMany
