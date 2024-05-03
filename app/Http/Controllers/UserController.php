@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use GuzzleHttp\Psr7\Request;
@@ -78,6 +79,26 @@ class UserController extends Controller
     public function get(): UserResource
     {
         $user = Auth::user();
+        return new UserResource($user);
+    }
+
+    public function update(UserUpdateRequest $request): UserResource
+    {
+        $data = $request->validated();
+
+        // cek user yg sedang login
+        $user = Auth::user();
+
+        // ubah data
+        if (isset($data['name'])) {
+            $user->name = $data['name'];
+        }
+
+        if (isset($data['password'])) {
+            $user->password = Hash::make($data['password']);
+        }
+
+        $user->save();
         return new UserResource($user);
     }
 }
