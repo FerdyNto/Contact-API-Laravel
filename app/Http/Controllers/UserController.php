@@ -6,8 +6,10 @@ use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -70,6 +72,12 @@ class UserController extends Controller
         $user->save();
 
         // karena response 200 tidak perlu return JsonResponse cukup UserResource saja
+        return new UserResource($user);
+    }
+
+    public function get(): UserResource
+    {
+        $user = Auth::user();
         return new UserResource($user);
     }
 }
