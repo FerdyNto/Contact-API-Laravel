@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -41,5 +43,33 @@ class UserController extends Controller
 
         // kembalikan data user ke respon
         return (new UserResource($user))->response()->setStatusCode(201);
+    }
+
+    public function login(UserLoginRequest $request): UserResource
+    {
+        // Validasi data
+        $data = $request->validated();
+
+        // get user dari database sesuai dengan username yg diinput
+        $user = User::where('username', $data['username'])->first();
+
+        // cek username atau password yg diinputkan tidak sesuai
+        if (!$user || !Hash::check($data['password'], $user->password)) {
+            // ada di database?
+            throw new HttpResponseException(response([
+                "errors" => [
+                    "message" => [
+                        "username or password wrong"
+                    ]
+                ]
+            ], 401));
+        }
+
+        // buat token untuk login user
+        $user->token = Str::uuid()->toString();
+        $user->save();
+
+        // karena response 200 tidak perlu return JsonResponse cukup UserResource saja
+        return new UserResource($user);
     }
 }
