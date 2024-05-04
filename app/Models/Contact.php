@@ -15,6 +15,13 @@ class Contact extends Model
     public $incrementing = true;
     public $timestamps = true;
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+    ];
+
     // Relasi Contact User
     // 1 contact dimiliki 1 user
     public function user(): BelongsTo
