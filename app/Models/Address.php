@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Address extends Model
 {
+    use HasFactory;
     protected $table = "addresses";
     protected $primarykey = "id";
     protected $keyType = "int";
