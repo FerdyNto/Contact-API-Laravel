@@ -7,9 +7,10 @@ use App\Http\Requests\UserRegisterRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
+// use Illuminate\Http\Client\Request;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -76,7 +77,7 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    public function get(): UserResource
+    public function get(Request $request): UserResource
     {
         $user = Auth::user();
         return new UserResource($user);

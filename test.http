@@ -1,0 +1,147 @@
+### Register User API
+POST http://127.0.0.1:8000/api/users
+Content-Type: application/json
+Accept: application/json
+
+{
+    "username": "Herdianto",
+    "password": "rahasia",
+    "name" : "Ferdy Herdianto"
+}
+
+### Login User API
+POST http://127.0.0.1:8000/api/users/login
+Content-Type: application/json
+Accept: application/json
+
+{
+     "username": "Herdianto",
+    "password": "rahasia"
+}
+
+### Get Current User API
+GET http://localhost:8000/api/users/current
+Content-Type: application/json
+Accept: application/json
+Authorization:59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+### Update Current User API
+PATCH  http://127.0.0.1:8000/api/users/current
+Content-Type: application/json
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+{
+    "name" : "Ferdy Herdianto"
+}
+
+### Logout User API
+DELETE http://127.0.0.1:8000/api/users/logout
+Content-Type: application/json
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+### Create Contact API
+POST http://127.0.0.1:8000/api/contacts
+Content-Type: application/json
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+{
+    "first_name": "Desi",
+    "last_name": "Saswita",
+    "email": "cikadwina@mail.com",
+    "phone": "081313131212"
+}
+
+### Get Contact API
+GET http://127.0.0.1:8000/api/contacts/4416
+Content-Type: application/json
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+
+### Update Contact API by ID
+PUT http://127.0.0.1:8000/api/contacts/4416
+Content-Type: application/json
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+{
+    "first_name": "Chika",
+    "last_name": "Dwina",
+    "email": "cikadwina@mail.com",
+    "phone": "081313131212"
+}
+
+
+### DELETE Conctact API
+DELETE http://127.0.0.1:8000/api/contacts/4416
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+
+### Get Contact API
+GET http://127.0.0.1:8000/api/contacts
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+### get Contact API 2 data per halaman
+GET http://127.0.0.1:8000/api/contacts?size=2
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+### get Contact API 2 data per halaman, dan ambil data di halaman 2
+GET http://127.0.0.1:8000/api/contacts?size=2&page=1
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+### get Contact Search API
+GET http://127.0.0.1:8000/api/contacts?name=desi
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+### Create Address API 4417
+POST http://127.0.0.1:8000/api/contacts/4417/addresses
+Accept: application/json
+Content-Type: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+{
+    "street": "Jalan belum ada 2 kalo",
+    "city": "Medan",
+    "province": "Sumatra Utara",
+    "country": "Indonesia",
+    "postal_code": "123123"
+}
+
+### Create Address API 178
+GET http://127.0.0.1:8000/api/contacts/4417/addresses/178
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+
+### Update Address API 178
+PUT http://127.0.0.1:8000/api/contacts/4417/addresses/178
+Accept: application/json
+Content-Type: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+{
+    "street": "Jalan dengan yang lain",
+    "city": "Medan",
+    "province": "Sumatra Utara",
+    "country": "Indonesia",
+    "postal_code": "123123"
+}
+
+### DELETE Address API 179
+DELETE http://127.0.0.1:8000/api/contacts/4417/addresses/179
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e
+
+
+### DELETE Address API 179
+GET http://127.0.0.1:8000/api/contacts/4417/addresses
+Accept: application/json
+Authorization: 59dfcb76-0ec3-4e0a-b21c-fcf891cb6c6e

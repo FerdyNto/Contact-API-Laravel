@@ -36,7 +36,7 @@ class ApiAuthMiddleware
 
 
 
-        if ($authenticate) {
+        if ($authenticate == true) {
             return $next($request);
         } else {
             return response()->json([
